@@ -4,89 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <title>game</title>
+    <title>Rock Paper Scissors Game</title>
   </head>
   <body>
     <h1>Play Rock Paper Scissors</h1>
     <div class="buttons">
-      <button
-        onclick="
-       generateComputerChoice();
-       
-    let resultmsg;
-    if (computerchoice === 'Rock') {
-        resultmsg = ` It's a tie `;
-    } else if (computerchoice === 'Paper') {
-        resultmsg = ` computer won `;
-    } else  if (computerchoice === 'Scissors') {
-        resultmsg =  `  You win `;
-    }
-
-    alert(`You have choosen Rock. `);
-
-    document.querySelector('#message1').innerText = `
-        Computer choice is ${computerchoice} `
-
-        document.querySelector('#message2').innerText = `
-        winner - ${resultmsg}`
-
-      "
-      >
-        Rock
-      </button>
-
-      <button
-        onclick="
-    generateComputerChoice();
-
-    let resultmsg;
-    if (computerchoice === 'Paper') {
-        resultmsg = ` It's a tie `;
-    } else if (computerchoice === 'Scissors') {
-        resultmsg = ` computer won `;
-    } else  if (computerchoice === 'Rock') {
-        resultmsg =  ` You win `;
-    }
-
-    alert(`You have choosen Paper. `);
-
-    document.querySelector('#message1').innerText = `
-        Computer choice is ${computerchoice} `
-
-        document.querySelector('#message2').innerText = `
-        winner - ${resultmsg}`
-
-      "
-      >
-        Paper
-      </button>
-
-      <button
-        onclick="
-     generateComputerChoice();
-
-    let resultmsg;
-    if (computerchoice === 'Scissors') {
-        resultmsg = ` It's a tie `;
-    } else if (computerchoice === 'Rock') {
-        resultmsg = ` computer won `;
-    } else  if (computerchoice === 'Paper') {
-        resultmsg =  `You win `;
-       
-    }
-
-    alert(`You have choosen Scissors. `);
-
-    document.querySelector('#message1').innerText = `
-        Computer choice is ${computerchoice} `
-
-        document.querySelector('#message2').innerText = `
-        winner - ${resultmsg}`
-
-      "
-      >
-        Scissors
-      </button>
+      <button onclick="playGame('Rock')">Rock</button>
+      <button onclick="playGame('Paper')">Paper</button>
+      <button onclick="playGame('Scissors')">Scissors</button>
     </div>
 
     <div class="msg">
@@ -95,25 +20,40 @@
     </div>
 
     <script>
-      let computerchoice;
-      let resultmsg;
-
       function generateComputerChoice() {
         let randomnumber = Math.random() * 3;
         if (randomnumber >= 0 && randomnumber < 1) {
-          computerchoice = "Rock";
+          return "Rock";
         } else if (randomnumber >= 1 && randomnumber < 2) {
-          computerchoice = "Paper";
+          return "Paper";
         } else {
-          computerchoice = "Scissors";
+          return "Scissors";
         }
       }
 
-      document.querySelector("#message1").innerText = `
-        Computer choice is ${computerchoice} `;
+      function getResult(playerChoice, computerChoice) {
+        if (playerChoice === computerChoice) {
+          return "It's a tie!";
+        } else if (
+          (playerChoice === "Rock" && computerChoice === "Scissors") ||
+          (playerChoice === "Paper" && computerChoice === "Rock") ||
+          (playerChoice === "Scissors" && computerChoice === "Paper")
+        ) {
+          return "You win!";
+        } else {
+          return "Computer wins!";
+        }
+      }
 
-      document.querySelector("#message2").innerText = `
-        winner - ${resultmsg}`;
+      function playGame(playerChoice) {
+        let computerChoice = generateComputerChoice();
+        let resultMsg = getResult(playerChoice, computerChoice);
+
+        alert(`You have chosen ${playerChoice}.`);
+
+        document.querySelector("#message1").innerText = `Computer choice is ${computerChoice}`;
+        document.querySelector("#message2").innerText = `Winner - ${resultMsg}`;
+      }
     </script>
   </body>
 </html>
