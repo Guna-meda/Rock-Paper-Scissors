@@ -7,16 +7,17 @@
     <title>Rock Paper Scissors Game</title>
   </head>
   <body>
-    <h1>Play Rock Paper Scissors</h1>
+    <h1>Play Rock Paper Scissors 🪨 📃 ✂️</h1>
     <div class="buttons">
-      <button onclick="playGame('Rock')">Rock</button>
-      <button onclick="playGame('Paper')">Paper</button>
-      <button onclick="playGame('Scissors')">Scissors</button>
+      <button onclick="playGame('Rock')">Rock 🪨</button>
+      <button onclick="playGame('Paper')">Paper 📃</button>
+      <button onclick="playGame('Scissors')">Scissors ✂️</button>
     </div>
 
     <div class="msg">
       <h2 id="message1"></h2>
       <h2 id="message2"></h2>
+      <h2 id="message3"></h2>
     </div>
 
     <script>
@@ -31,17 +32,29 @@
         }
       }
 
+      score = {
+        win : 0,
+        lost :0,
+        tie :0,
+      };
+
       function getResult(playerChoice, computerChoice) {
         if (playerChoice === computerChoice) {
+          score.tie++;
           return "It's a tie!";
+         
         } else if (
           (playerChoice === "Rock" && computerChoice === "Scissors") ||
           (playerChoice === "Paper" && computerChoice === "Rock") ||
           (playerChoice === "Scissors" && computerChoice === "Paper")
         ) {
+          score.win++;
           return "You win!";
+          
         } else {
+          score.lost++
           return "Computer wins!";
+         
         }
       }
 
@@ -50,10 +63,14 @@
         let resultMsg = getResult(playerChoice, computerChoice);
 
         alert(`You have chosen ${playerChoice}.`);
+        console.log(score);
 
         document.querySelector("#message1").innerText = `Computer choice is ${computerChoice}`;
         document.querySelector("#message2").innerText = `Winner - ${resultMsg}`;
+        document.querySelector("#message3").innerText = `score - wins: ${score.win},losses : ${score.lost},Ties : ${score.tie}`;
       }
+
+      
     </script>
   </body>
 </html>

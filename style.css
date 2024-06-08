@@ -1,5 +1,3 @@
-/* style.css */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f0f4f8;
@@ -25,8 +23,8 @@ h1 {
 }
 
 button {
-    background-color: #3498db;
-    border: none;
+    background-color: #4CAF50;
+    border: 2px solid #4CAF50;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -37,20 +35,46 @@ button {
     cursor: pointer;
     border-radius: 12px;
     transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #45a049;
+    border-color: #45a049;
     transform: scale(1.05);
 }
 
-#message1, #message2 {
+#message1, #message2, #message3 {
     font-size: 1.5em;
     margin-top: 20px;
-    background-color: #ecf0f1;
-    color: #2c3e50;
+    background-color: #3498db;
+    color: #ffffff;
     padding: 10px 20px;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px rgba(52, 152, 219, 0.3);
+} 
+
+/* CSS for Phones and Tablets */
+@media (max-width: 767px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+    }
+
+    #message1, #message2, #message3 {
+        font-size: 1em;
+    }
 }
+
+
+
+
+
+
+
+
