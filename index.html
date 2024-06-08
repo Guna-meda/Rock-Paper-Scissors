@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>game</title>
+  </head>
+  <body>
+    <h1>Play Rock Paper Scissors</h1>
+    <div class="buttons">
+      <button
+        onclick="
+       generateComputerChoice();
+       
+    let resultmsg;
+    if (computerchoice === 'Rock') {
+        resultmsg = ` It's a tie `;
+    } else if (computerchoice === 'Paper') {
+        resultmsg = ` computer won `;
+    } else  if (computerchoice === 'Scissors') {
+        resultmsg =  `  You win `;
+    }
+
+    alert(`You have choosen Rock. `);
+
+    document.querySelector('#message1').innerText = `
+        Computer choice is ${computerchoice} `
+
+        document.querySelector('#message2').innerText = `
+        winner - ${resultmsg}`
+
+      "
+      >
+        Rock
+      </button>
+
+      <button
+        onclick="
+    generateComputerChoice();
+
+    let resultmsg;
+    if (computerchoice === 'Paper') {
+        resultmsg = ` It's a tie `;
+    } else if (computerchoice === 'Scissors') {
+        resultmsg = ` computer won `;
+    } else  if (computerchoice === 'Rock') {
+        resultmsg =  ` You win `;
+    }
+
+    alert(`You have choosen Paper. `);
+
+    document.querySelector('#message1').innerText = `
+        Computer choice is ${computerchoice} `
+
+        document.querySelector('#message2').innerText = `
+        winner - ${resultmsg}`
+
+      "
+      >
+        Paper
+      </button>
+
+      <button
+        onclick="
+     generateComputerChoice();
+
+    let resultmsg;
+    if (computerchoice === 'Scissors') {
+        resultmsg = ` It's a tie `;
+    } else if (computerchoice === 'Rock') {
+        resultmsg = ` computer won `;
+    } else  if (computerchoice === 'Paper') {
+        resultmsg =  `You win `;
+       
+    }
+
+    alert(`You have choosen Scissors. `);
+
+    document.querySelector('#message1').innerText = `
+        Computer choice is ${computerchoice} `
+
+        document.querySelector('#message2').innerText = `
+        winner - ${resultmsg}`
+
+      "
+      >
+        Scissors
+      </button>
+    </div>
+
+    <div class="msg">
+      <h2 id="message1"></h2>
+      <h2 id="message2"></h2>
+    </div>
+
+    <script>
+      let computerchoice;
+      let resultmsg;
+
+      function generateComputerChoice() {
+        let randomnumber = Math.random() * 3;
+        if (randomnumber >= 0 && randomnumber < 1) {
+          computerchoice = "Rock";
+        } else if (randomnumber >= 1 && randomnumber < 2) {
+          computerchoice = "Paper";
+        } else {
+          computerchoice = "Scissors";
+        }
+      }
+
+      document.querySelector("#message1").innerText = `
+        Computer choice is ${computerchoice} `;
+
+      document.querySelector("#message2").innerText = `
+        winner - ${resultmsg}`;
+    </script>
+  </body>
+</html>
