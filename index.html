@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors Game</title>
-    <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/guna-meda/Rock-Paper-Scissors/main/favicon.jpg">
+    <link rel="icon" type="image/png" href="fevicon.jpg">
 
   </head>
   <body>
@@ -16,10 +16,17 @@
       <button onclick="playGame('Scissors')">Scissors ✂️</button>
     </div>
 
+    <div>
+      <button onclick="localStorage.clear();
+      resetscore();
+      ">RESET</button>
+    </div>
+
     <div class="msg">
       <h2 id="message1"></h2>
       <h2 id="message2"></h2>
       <h2 id="message3"></h2>
+      <h2 id="message4"></h2>
     </div>
 
     <script>
@@ -34,11 +41,25 @@
         }
       }
 
-      score = {
+      let scorestg = localStorage.getItem ('score');
+      let score;
+      resetscore (scorestg);
+
+      function resetscore (scorestg) {
+      score = scorestg? JSON.parse (scorestg) :  {
         win : 0,
         lost :0,
         tie :0,
       };
+      
+  
+      score.displayScore = function () {
+          return `wins: ${score.win},losses : ${score.lost},Ties : ${score.tie}`;
+        }
+        
+        playGame()
+
+      }
 
       function getResult(playerChoice, computerChoice) {
         if (playerChoice === computerChoice) {
@@ -64,12 +85,18 @@
         let computerChoice = generateComputerChoice();
         let resultMsg = getResult(playerChoice, computerChoice);
 
-        alert(`You have chosen ${playerChoice}.`);
-        console.log(score);
+         localStorage.setItem('score', JSON.stringify(score));
+       
+        document.querySelector("#message1").innerText =
+         playerChoice ?`Your choice is ${playerChoice}`: '' ;
 
-        document.querySelector("#message1").innerText = `Computer choice is ${computerChoice}`;
-        document.querySelector("#message2").innerText = `Winner - ${resultMsg}`;
-        document.querySelector("#message3").innerText = `score - wins: ${score.win},losses : ${score.lost},Ties : ${score.tie}`;
+        document.querySelector("#message2").innerText = 
+        playerChoice ?`Computer choice is ${computerChoice}`:'';
+
+        document.querySelector("#message3").innerText =
+        playerChoice  ? `Winner - ${resultMsg}`:'';
+
+        document.querySelector("#message4").innerText = `score - ${score.displayScore()}`;
       }
 
       
